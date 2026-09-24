@@ -101,9 +101,9 @@ export const contact = {
 } as const;
 
 // Per-route OG (own image per route)
-// Use absolute URLs for WhatsApp crawler — replace YOURDOMAIN with deployed domain (e.g., https://comal-sarabjot.invitestory.in)
-// The path version is kept for internal routing; url/imageAbsolute are for meta tags.
-const DOMAIN = "https://YOURDOMAIN.com";
+// Use absolute URLs for WhatsApp crawler — invitingyou.top is the live custom domain
+// Also fallback to workers.dev if custom domain not set. Update DOMAIN if you change hosting.
+const DOMAIN = "https://comalbkaur-sarabjot.invitingyou.top";
 export const og = {
   main: {
     title: "Comal Kaur Weds Sarabjot Singh Lamba",

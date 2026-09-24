@@ -39,14 +39,24 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
+      <div className="max-w-lg text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
+        {/* Debug info — visible in production to diagnose 500; remove after fix */}
+        <details className="mt-4 rounded-md border border-border bg-muted/30 p-3 text-left">
+          <summary className="cursor-pointer text-xs font-medium text-muted-foreground">
+            Error details (for debugging)
+          </summary>
+          <pre className="mt-2 max-h-64 overflow-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-foreground/80">
+            {error?.message || String(error)}
+            {error?.stack ? `\n\n${error.stack}` : ""}
+          </pre>
+        </details>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -87,11 +97,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Join us in celebrating the wedding of Comal Kaur and Sarabjot Singh Lamba.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://YOURDOMAIN.com/og/comal-sarabjot.jpg" },
+      { property: "og:site_name", content: "Comal Kaur Weds Sarabjot Singh Lamba" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:url", content: "https://comalbkaur-sarabjot.invitingyou.top/comal-sarabjot/" },
+      { property: "og:image", content: "https://comalbkaur-sarabjot.invitingyou.top/og/comal-sarabjot.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:alt", content: "Comal Kaur Weds Sarabjot Singh Lamba — 13 December 2026" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://YOURDOMAIN.com/og/comal-sarabjot.jpg" },
+      { name: "twitter:title", content: "Comal Kaur Weds Sarabjot Singh Lamba" },
+      { name: "twitter:description", content: "Join us in celebrating the wedding of Comal Kaur and Sarabjot Singh Lamba." },
+      { name: "twitter:image", content: "https://comalbkaur-sarabjot.invitingyou.top/og/comal-sarabjot.jpg" },
+      { name: "twitter:image:alt", content: "Comal Kaur Weds Sarabjot Singh Lamba" },
       { name: "theme-color", content: "#fdf8ee" },
     ],
     links: [
