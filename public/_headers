@@ -1,0 +1,33 @@
+# Cloudflare Workers / Pages _headers — fast Indian mobile cache + OG correctness
+# Assets (Vite hashed) — immutable 1y
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/og/*
+  Cache-Control: public, max-age=31536000, immutable
+/media/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# OG images — must be public for WhatsApp crawler, but revalidate short to allow swap
+/og/comal-sarabjot.jpg
+  Cache-Control: public, max-age=600, s-maxage=600
+  Content-Type: image/jpeg
+/og/12-13.jpg
+  Cache-Control: public, max-age=600, s-maxage=600
+  Content-Type: image/jpeg
+/og/13.jpg
+  Cache-Control: public, max-age=600, s-maxage=600
+  Content-Type: image/jpeg
+
+# Invitation HTML — no heavy cache (300s) so fixes propagate quickly via WhatsApp share
+/comal-sarabjot/*
+  Cache-Control: public, max-age=300, s-maxage=600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+
+# Root redirect steward — minimal
+/
+  Cache-Control: public, max-age=60, s-maxage=120
+
+/* 
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

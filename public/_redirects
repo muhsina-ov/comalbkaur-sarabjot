@@ -1,0 +1,3 @@
+# Cloudflare _redirects — handle "/" → "/comal-sarabjot/" at edge (0ms)
+# Also covers Nitro prerender crawlLinks; tanstack router also handles client redirect
+/   /comal-sarabjot/   301
