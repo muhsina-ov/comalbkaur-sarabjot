@@ -41,19 +41,5 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  build: {
-    target: "esnext",
-    // Cloudflare Worker bundle: let Vite/Rolldown handle chunking; manualChunks as function for Rolldown compat
-    rollupOptions: {
-      output: {
-        manualChunks(id: string) {
-          if (id.includes("node_modules/react") || id.includes("node_modules/react-dom")) return "react";
-          if (id.includes("node_modules/@tanstack")) return "router";
-          if (id.includes("node_modules/lucide-react")) return "icons";
-          return undefined;
-        },
-      },
-    },
-  },
 });
 
