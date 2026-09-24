@@ -27,10 +27,55 @@ export function MusicPlayer() {
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
     audio.addEventListener("ended", onEnded);
+
+    // 1. Attempt immediate autoplay (works if browser allows or already interacted)
+    const tryAutoplay = async () => {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+        setHasInteracted(true);
+      } catch (err) {
+        // Autoplay policy prevented immediate playback until user interaction
+        console.debug("Autoplay waiting for user gesture:", err);
+      }
+    };
+    tryAutoplay();
+
+    // 2. Global user interaction listener to start music on first touch/click/scroll
+    const handleUserGesture = async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          setIsPlaying(true);
+          setHasInteracted(true);
+        } catch (e) {
+          console.debug("Play error on gesture:", e);
+        }
+      }
+      removeGestureListeners();
+    };
+
+    const removeGestureListeners = () => {
+      window.removeEventListener("click", handleUserGesture);
+      window.removeEventListener("touchstart", handleUserGesture);
+      window.removeEventListener("pointerdown", handleUserGesture);
+      window.removeEventListener("keydown", handleUserGesture);
+      window.removeEventListener("scroll", handleUserGesture);
+      window.removeEventListener("play-wedding-music", handleUserGesture);
+    };
+
+    window.addEventListener("click", handleUserGesture, { passive: true });
+    window.addEventListener("touchstart", handleUserGesture, { passive: true });
+    window.addEventListener("pointerdown", handleUserGesture, { passive: true });
+    window.addEventListener("keydown", handleUserGesture, { passive: true });
+    window.addEventListener("scroll", handleUserGesture, { passive: true });
+    window.addEventListener("play-wedding-music", handleUserGesture);
+
     return () => {
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
       audio.removeEventListener("ended", onEnded);
+      removeGestureListeners();
     };
   }, []);
 
@@ -40,13 +85,11 @@ export function MusicPlayer() {
     setHasInteracted(true);
     try {
       if (audio.paused) {
-        // Ensure we respect reduced-motion — just play normally
         await audio.play();
       } else {
         audio.pause();
       }
     } catch (e) {
-      // Autoplay blocked — show paused state
       console.warn("Audio play blocked", e);
       setIsPlaying(false);
     }

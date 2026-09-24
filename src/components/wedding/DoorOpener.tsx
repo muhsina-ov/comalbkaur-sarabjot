@@ -28,6 +28,7 @@ export function DoorOpener({ children }: { children: React.ReactNode }) {
     if (opened) return;
     setOpened(true);
     sessionStorage.setItem(SESSION_KEY, "true");
+    window.dispatchEvent(new CustomEvent("play-wedding-music"));
     // After the door animation finishes, fade out and remove
     window.setTimeout(() => setClosing(true), 1200);
     window.setTimeout(() => {
