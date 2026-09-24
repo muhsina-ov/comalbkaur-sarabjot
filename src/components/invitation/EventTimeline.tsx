@@ -1,30 +1,10 @@
 import { Reveal } from "@/components/wedding/Section";
+import { events, type WeddingEvent } from "@/lib/wedding";
 
-export type TimelineEvent = {
-  dateLabel: string;
-  dayLabel?: string;
-  title: string;
-  time: string;
-  venue?: string;
-  note?: string;
-};
+// Central per customer spec — used for MAIN overview and filtered for 12-13 / 13 pages
+export const allEvents: WeddingEvent[] = events;
 
-// Central per spec — used for MAIN overview and filtered for 12-13 / 13 pages
-export const allEvents: TimelineEvent[] = [
-  { dateLabel: "11 DECEMBER 2026", title: "SANGEET", time: "8:30 PM onwards" },
-  { dateLabel: "12 DECEMBER 2026", title: "RING CEREMONY", time: "8:30 PM onwards" },
-  { dateLabel: "13 DECEMBER 2026", dayLabel: "SUNDAY", title: "BARAT ARRIVAL", time: "10:30 AM" },
-  {
-    dateLabel: "13 DECEMBER 2026",
-    title: "LAVAN",
-    time: "Gurudwara Guru Nanak Darbar\nGurunankpura, Nagpur",
-    venue: "Gurudwara Guru Nanak Darbar, Gurunankpura, Nagpur",
-  },
-  { dateLabel: "13 DECEMBER 2026", title: "FOLLOWED BY LUNCH", time: "ESSENTIA", venue: "ESSENTIA" },
-  { dateLabel: "13 DECEMBER 2026", title: "RECEPTION", time: "9:00 PM", venue: "Lamba Celebrations" },
-];
-
-function EventCard({ ev, index }: { ev: TimelineEvent; index: number }) {
+function EventCard({ ev, index }: { ev: WeddingEvent; index: number }) {
   return (
     <Reveal delay={index * 45}>
       <article className="card-soft press relative overflow-hidden px-5 py-6 text-center sm:px-7 sm:py-7">
@@ -39,13 +19,13 @@ function EventCard({ ev, index }: { ev: TimelineEvent; index: number }) {
           </p>
         )}
         <h3 className="mt-3 font-display text-[1.7rem] leading-none tracking-[0.06em] text-foreground sm:text-[2rem]">
-          {ev.title}
+          {ev.name}
         </h3>
         <p className="mt-3 whitespace-pre-line font-body text-[0.78rem] leading-relaxed tracking-[0.08em] text-foreground/80 sm:text-[0.84rem]">
           {ev.time}
         </p>
-        {ev.venue && ev.title !== "LAVAN" && (
-          <p className="mt-1 text-[0.68rem] tracking-wide text-muted-foreground">
+        {ev.venue && (
+          <p className="mt-1 whitespace-pre-line text-[0.68rem] tracking-wide text-muted-foreground">
             {ev.venue}
           </p>
         )}
@@ -61,11 +41,11 @@ export function EventTimeline({
   overline = "When & where",
   title = "Celebrations",
 }: {
-  filter?: (ev: TimelineEvent) => boolean;
+  filter?: (ev: WeddingEvent) => boolean;
   overline?: string;
   title?: string;
 }) {
-  const events = filter ? allEvents.filter(filter) : allEvents;
+  const displayed = filter ? allEvents.filter(filter) : allEvents;
   return (
     <section id="celebrations" className="bg-background px-6 py-10 sm:px-8 sm:py-14" aria-label="Event overview">
       <Reveal>
@@ -83,8 +63,8 @@ export function EventTimeline({
       </Reveal>
 
       <ul className="mx-auto mt-8 max-w-[560px] space-y-4">
-        {events.map((ev, i) => (
-          <li key={`${ev.title}-${i}`}>
+        {displayed.map((ev, i) => (
+          <li key={`${ev.name}-${i}`}>
             <EventCard ev={ev} index={i} />
           </li>
         ))}

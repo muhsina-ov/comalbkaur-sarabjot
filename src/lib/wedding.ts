@@ -21,7 +21,7 @@ export const family = {
   brideParents: "Daughter of Beena and Sukhvinder Singh",
 } as const;
 
-// ── Events overview (exact per spec) ──
+// ── Events overview (exact per customer spec) ──
 export type WeddingEvent = {
   id: string;
   name: string;
@@ -38,33 +38,29 @@ export const events: WeddingEvent[] = [
     name: "SANGEET",
     dateLabel: "11 DECEMBER 2026",
     time: "8:30 PM onwards",
+    venue: "Essentia",
   },
   {
-    id: "ring",
-    name: "RING CEREMONY",
+    id: "engagement",
+    name: "ENGAGEMENT CEREMONY",
     dateLabel: "12 DECEMBER 2026",
     time: "8:30 PM onwards",
+    venue: "Essentia",
   },
   {
-    id: "barat",
-    name: "BARAT ARRIVAL",
+    id: "anand-karaj",
+    name: "ANAND KARAJ",
     dateLabel: "13 DECEMBER 2026",
     dayLabel: "SUNDAY",
-    time: "10:30 AM",
-  },
-  {
-    id: "lavan",
-    name: "LAVAN",
-    dateLabel: "13 DECEMBER 2026",
-    time: "Gurudwara Guru Nanak Darbar\nGurunankpura, Nagpur",
-    venue: "Gurudwara Guru Nanak Darbar, Gurunankpura, Nagpur",
+    time: "11:00 AM – 12:00 PM",
+    venue: "Gurudwara Guru Nanak Darbar\nGurunankpura, Nagpur",
   },
   {
     id: "lunch",
-    name: "FOLLOWED BY LUNCH",
+    name: "LUNCH",
     dateLabel: "13 DECEMBER 2026",
-    time: "ESSENTIA",
-    venue: "ESSENTIA",
+    time: "1:30 PM",
+    venue: "Essentia",
   },
   {
     id: "reception",
@@ -88,16 +84,13 @@ export type LocationKey = keyof typeof locations;
 
 export const locationLabels: Record<LocationKey, string> = {
   gurudwara: "Gurudwara Guru Nanak Darbar",
-  essentia: "ESSENTIA — Lunch Venue",
+  essentia: "Essentia",
   reception: "Lamba Celebrations — Reception",
 };
 
 export const contact = {
   closingLine1: "WITH LOVE",
   closingFamily: "Bhangu and Palakkel Family",
-  eventManagerLabel: "Event Manager",
-  eventManagerPhone: "+91 7385640439",
-  eventManagerHref: "tel:+917385640439",
 } as const;
 
 // Per-route OG (own image per route)
@@ -115,18 +108,18 @@ export const og = {
     imageAbsolute: `${DOMAIN}/og/comal-sarabjot.jpg`,
   },
   r12_13: {
-    title: "Comal & Sarabjot — 12th & 13th December",
+    title: "Comal & Sarabjot — Events",
     description:
-      "Ring Ceremony on 12th December and Wedding Day on 13th December — Comal Kaur & Sarabjot Singh Lamba.",
+      "Engagement Ceremony on 12th December and Wedding Day on 13th December — Comal Kaur & Sarabjot Singh Lamba.",
     urlPath: "/comal-sarabjot/12-13/",
     url: `${DOMAIN}/comal-sarabjot/12-13/`,
     image: "/og/12-13.jpg",
     imageAbsolute: `${DOMAIN}/og/12-13.jpg`,
   },
   r13: {
-    title: "Comal & Sarabjot — Wedding Day",
+    title: "Comal & Sarabjot — Reception",
     description:
-      "Wedding Day — 13 December 2026 — Comal Kaur & Sarabjot Singh Lamba. Barat, Lavan at Gurudwara Guru Nanak Darbar, Lunch at Essentia & Reception.",
+      "Reception — 13 December 2026 — Comal Kaur & Sarabjot Singh Lamba. Anand Karaj at Gurudwara Guru Nanak Darbar, Lunch at Essentia & Reception at Lamba Celebrations.",
     urlPath: "/comal-sarabjot/13/",
     url: `${DOMAIN}/comal-sarabjot/13/`,
     image: "/og/13.jpg",

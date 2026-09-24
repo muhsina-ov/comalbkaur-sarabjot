@@ -12,13 +12,13 @@ const all: LocationItem[] = [
   {
     key: "gurudwara",
     label: "Gurudwara Guru Nanak Darbar",
-    sub: "Gurunankpura, Nagpur — Lavan",
+    sub: "Gurunankpura, Nagpur — Anand Karaj",
     href: locations.gurudwara,
   },
   {
     key: "essentia",
-    label: "ESSENTIA",
-    sub: "Followed by Lunch",
+    label: "Essentia",
+    sub: "Lunch — 1:30 PM",
     href: locations.essentia,
   },
   {

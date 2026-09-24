@@ -2,9 +2,9 @@ import ikOnkar from "@/assets/ik-onkar.jpeg";
 import ikOnkarWebp from "@/assets/ik-onkar.webp";
 
 /**
- * Opening blessing — Sikh religious artwork as standalone element.
- * Spec: "Use the SIGN/SYMBOL/ARTWORK itself. Do NOT use its original background as website background.
- *  Do NOT stretch/distort/crop. Preserve proportions. Place elegantly near top/center with generous whitespace."
+ * Opening blessing — Sikh Ik Onkar symbol + Gurbani lines as text.
+ * Customer requirement: "I wanted the lines written there not a photo pasted."
+ * The Ik Onkar image is the sacred symbol; the Gurbani lines are rendered as text.
  */
 export function OpeningBlessing() {
   return (
@@ -18,30 +18,22 @@ export function OpeningBlessing() {
         className="mb-8 h-px w-12 bg-primary/40 sm:mb-10 sm:w-16"
         style={{ animation: "shimmer-line 3s ease-in-out infinite" }}
       />
-      <div className="relative">
-        {/* Subtle gold glow behind artwork — paper isolated, not background */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 rounded-full opacity-[0.08]"
-          style={{
-            background: "radial-gradient(circle at 50% 50%, var(--color-primary), transparent 68%)",
-            transform: "scale(1.35)",
-          }}
-        />
-        <picture>
-          <source srcSet={ikOnkarWebp} type="image/webp" />
-          <img
-            src={ikOnkar}
-            alt="Ik Onkar — Sikh opening blessing"
-            width={560}
-            height={560}
-            // Client said "Please use this at the start" — standalone, preserve aspect, generous whitespace
-            className="block h-auto w-[200px] max-w-[72vw] object-contain sm:w-[240px] md:w-[260px]"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
+
+      {/* ੴ Symbol */}
+      <p className="font-display text-[2.8rem] leading-none text-primary sm:text-[3.4rem]" aria-label="Ik Onkar">
+        ੴ
+      </p>
+
+      {/* Gurbani lines rendered as text, NOT as image */}
+      <div className="mt-6 max-w-[22rem] text-center">
+        <p className="font-display text-[0.82rem] leading-[2] tracking-[0.08em] text-foreground/85 sm:text-[0.88rem]">
+          ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ
+        </p>
+        <p className="mt-1 font-display text-[0.82rem] leading-[2] tracking-[0.08em] text-foreground/85 sm:text-[0.88rem]">
+          ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ
+        </p>
       </div>
+
       <span
         aria-hidden="true"
         className="mt-8 h-px w-12 bg-primary/40 sm:mt-10 sm:w-16"

@@ -11,27 +11,24 @@ type GalleryImage = {
   jpeg: string;
   webp: string;
   alt: string;
-  caption?: string;
 };
 
-const images: GalleryImage[] = [
-  {
-    jpeg: sunflowerJpeg,
-    webp: sunflowerWebp,
-    alt: "Comal and Sarabjot in a sunflower field at sunset — traditional attire",
-    caption: "Sunflower fields at golden hour",
-  },
+const featured: GalleryImage = {
+  jpeg: sunflowerJpeg,
+  webp: sunflowerWebp,
+  alt: "Comal and Sarabjot — pre-wedding portrait",
+};
+
+const gallery: [GalleryImage, GalleryImage] = [
   {
     jpeg: palaceJpeg,
     webp: palaceWebp,
-    alt: "Comal and Sarabjot sitting on grass before a palace",
-    caption: "An afternoon on the greens",
+    alt: "Comal and Sarabjot — couple portrait",
   },
   {
     jpeg: cityJpeg,
     webp: cityWebp,
-    alt: "Comal and Sarabjot in the city at dusk",
-    caption: "Evening in the city",
+    alt: "Comal and Sarabjot — evening portrait",
   },
 ];
 
@@ -53,11 +50,6 @@ function GalleryCard({ img, priority = false }: { img: GalleryImage; priority?: 
           />
         </picture>
       </div>
-      {img.caption && (
-        <p className="px-2 pb-2 pt-3 text-center text-[0.58rem] uppercase tracking-[0.12em] text-muted-foreground/70 sm:text-[0.62rem]">
-          {img.caption}
-        </p>
-      )}
     </div>
   );
 }
@@ -73,7 +65,7 @@ export function CoupleGallery({
       <section className="bg-background px-6 py-6 sm:px-8" aria-label="Couple portrait">
         <Reveal>
           <div className="mx-auto max-w-[560px]">
-            <GalleryCard img={images[0]} priority={false} />
+            <GalleryCard img={featured} priority={false} />
             <p className="mt-4 text-center font-display text-[1.15rem] italic tracking-wide text-primary">
               Comal &amp; Sarabjot
             </p>
@@ -83,7 +75,7 @@ export function CoupleGallery({
     );
   }
 
-  // Main — featured sunflower + 2-column grid for other two
+  // Main — featured image + 2-column grid for other two
   return (
     <section className="bg-background px-6 py-8 sm:px-8 sm:py-10" aria-label="Comal and Sarabjot — moments">
       <Reveal>
@@ -104,21 +96,21 @@ export function CoupleGallery({
 
       <div className="mx-auto mt-8 max-w-[560px] space-y-4">
         <Reveal delay={30}>
-          <GalleryCard img={images[0]} priority={false} />
+          <GalleryCard img={featured} priority={false} />
         </Reveal>
 
         <div className="grid grid-cols-2 gap-4">
           <Reveal delay={70}>
-            <GalleryCard img={images[1]} />
+            <GalleryCard img={gallery[0]} />
           </Reveal>
           <Reveal delay={110}>
-            <GalleryCard img={images[2]} />
+            <GalleryCard img={gallery[1]} />
           </Reveal>
         </div>
 
         <Reveal delay={150}>
           <p className="text-center text-[0.58rem] leading-relaxed tracking-wide text-muted-foreground/60 px-2">
-            A glimpse of our journey — from sunflowers to city lights. Your presence will make the celebration complete.
+            Your presence will make the celebration complete.
           </p>
         </Reveal>
       </div>

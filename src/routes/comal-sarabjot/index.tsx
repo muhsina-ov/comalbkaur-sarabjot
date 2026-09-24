@@ -9,11 +9,12 @@ import { LocationButtons } from "@/components/invitation/LocationButtons";
 import { ShareButton } from "@/components/invitation/ShareButton";
 import { InvitationFooter } from "@/components/invitation/InvitationFooter";
 import { PageShell } from "@/components/invitation/PageShell";
+import { DoorOpener } from "@/components/wedding/DoorOpener";
 import { Countdown } from "@/components/wedding/Countdown";
 import { Reveal } from "@/components/wedding/Section";
-import { couple, og } from "@/lib/wedding";
+import { couple, og, type WeddingEvent } from "@/lib/wedding";
 
-export const Route = createFileRoute("/comal-sarabjot/")({
+export const Route = createFileRoute("/comal-sarabjot/")(  {
   head: () => ({
     meta: [
       { title: og.main.title },
@@ -34,50 +35,63 @@ export const Route = createFileRoute("/comal-sarabjot/")({
   component: MainInvitation,
 });
 
+/**
+ * MAIN INVITATION (Link 1)
+ * - Contains main wedding info, countdown, events overview (excluding reception)
+ * - No reception, no Barat, no event manager phone
+ * - Door-opening animation on entry
+ */
 function MainInvitation() {
+  // Filter: show all events EXCEPT reception (reception is only on Link 3)
+  const mainFilter = (ev: WeddingEvent) => ev.id !== "reception";
+
   return (
-    <PageShell>
-      {/* 1 — Opening Sikh artwork — standalone, generous whitespace, not background */}
-      <OpeningBlessing />
+    <DoorOpener>
+      <PageShell>
+        {/* 1 — Opening Sikh blessing — ੴ symbol + Gurbani text */}
+        <OpeningBlessing />
 
-      {/* 2 — CS Monogram — small/subtle */}
-      <Monogram />
+        {/* 2 — CS Monogram — small/subtle */}
+        <Monogram />
 
-      {/* 3-5 — Grandparents wording + Couple + Parents */}
-      <CoupleHeader />
+        {/* 3-5 — Grandparents wording + Couple + Parents */}
+        <CoupleHeader />
 
-      {/* Couple moments — from assets, where suitable */}
-      <CoupleGallery variant="main" />
+        {/* Couple moments — from assets */}
+        <CoupleGallery variant="main" />
 
-      {/* 6 — Countdown — elegant minimal to 13 Dec 2026 */}
-      <section className="bg-background px-6 py-8 sm:px-8 sm:py-10">
-        <Reveal>
-          <p className="text-center text-[0.62rem] uppercase tracking-airy text-muted-foreground">
-            Counting down to the wedding day
-          </p>
-          <p className="mt-1 text-center text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground/70">
-            13 December 2026
-          </p>
-          <div className="mx-auto mt-6 max-w-[420px]">
-            <Countdown iso={couple.weddingISO} />
-          </div>
-        </Reveal>
-      </section>
+        {/* 6 — Countdown — elegant minimal to 13 Dec 2026 */}
+        <section className="bg-background px-6 py-8 sm:px-8 sm:py-10">
+          <Reveal>
+            <p className="text-center text-[0.62rem] uppercase tracking-airy text-muted-foreground">
+              Counting down to the wedding day
+            </p>
+            <p className="mt-1 text-center text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground/70">
+              13 December 2026
+            </p>
+            <div className="mx-auto mt-6 max-w-[420px]">
+              <Countdown iso={couple.weddingISO} />
+            </div>
+          </Reveal>
+        </section>
 
-      {/* 7 — Complete event overview */}
-      <EventTimeline />
+        {/* 7 — Event overview (excluding reception) */}
+        <EventTimeline filter={mainFilter} />
 
-      {/* 8 — Elegant navigation cards — not corporate */}
-      <NavCards />
+        {/* 8 — Elegant navigation cards to other links */}
+        <NavCards />
 
-      {/* 9 — Location buttons — all relevant */}
-      <LocationButtons />
+        {/* 9 — Location buttons (exclude reception venue from main) */}
+        <LocationButtons
+          include={["gurudwara", "essentia"]}
+        />
 
-      {/* Share */}
-      <ShareButton />
+        {/* Share */}
+        <ShareButton />
 
-      {/* 10-11 — Closing family + Event Manager */}
-      <InvitationFooter />
-    </PageShell>
+        {/* 10 — Closing family */}
+        <InvitationFooter />
+      </PageShell>
+    </DoorOpener>
   );
 }

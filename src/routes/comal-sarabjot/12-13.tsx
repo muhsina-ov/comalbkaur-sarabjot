@@ -1,14 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { OpeningBlessing } from "@/components/invitation/OpeningBlessing";
 import { Monogram } from "@/components/invitation/Monogram";
 import { CoupleGallery } from "@/components/invitation/CoupleGallery";
-import { EventTimeline, allEvents } from "@/components/invitation/EventTimeline";
+import { EventTimeline } from "@/components/invitation/EventTimeline";
 import { LocationButtons } from "@/components/invitation/LocationButtons";
 import { ShareButton } from "@/components/invitation/ShareButton";
 import { InvitationFooter } from "@/components/invitation/InvitationFooter";
 import { PageShell } from "@/components/invitation/PageShell";
 import { Reveal } from "@/components/wedding/Section";
-import { og } from "@/lib/wedding";
+import { og, type WeddingEvent } from "@/lib/wedding";
 
 export const Route = createFileRoute("/comal-sarabjot/12-13")({
   head: () => ({
@@ -31,14 +31,19 @@ export const Route = createFileRoute("/comal-sarabjot/12-13")({
   component: Page12_13,
 });
 
+/**
+ * EVENTS PAGE (Link 2)
+ * Dec 12: Engagement Ceremony — 8:30 PM onwards — Essentia
+ * Dec 13: Anand Karaj — 11:00 AM–12:00 PM — Gurudwara
+ * Dec 13: Lunch — 1:30 PM — Essentia
+ * Does NOT include reception (that's Link 3 only)
+ */
 function Page12_13() {
-  // Filter: only 12th Ring + 13th Barat/Lavan/Lunch/Reception
-  const filter = (ev: (typeof allEvents)[number]) =>
-    ev.title === "RING CEREMONY" ||
-    ev.title === "BARAT ARRIVAL" ||
-    ev.title === "LAVAN" ||
-    ev.title === "FOLLOWED BY LUNCH" ||
-    ev.title === "RECEPTION";
+  // Filter: Engagement Ceremony (12th) + Anand Karaj + Lunch (13th) — no reception, no sangeet
+  const filter = (ev: WeddingEvent) =>
+    ev.id === "engagement" ||
+    ev.id === "anand-karaj" ||
+    ev.id === "lunch";
 
   return (
     <PageShell>
@@ -56,7 +61,7 @@ function Page12_13() {
             12<span className="mx-2 font-script text-[1.45rem] text-primary">&amp;</span>13 December
           </h1>
           <p className="mt-2 text-[0.66rem] uppercase tracking-[0.16em] text-muted-foreground">
-            Ring Ceremony &amp; Wedding Day
+            Engagement Ceremony &amp; Wedding Day
           </p>
           <p className="mt-3 text-sm text-foreground/70">
             Comal Kaur <span className="script text-primary">weds</span> Sarabjot Singh Lamba
@@ -66,18 +71,45 @@ function Page12_13() {
 
       <CoupleGallery variant="compact" />
 
-      {/* Filtered timeline — 12th + 13th only */}
+      {/* Filtered timeline — 12th + 13th only, no reception */}
       <EventTimeline
         filter={filter}
         overline="Your invitation"
         title="12th & 13th December"
       />
 
-      {/* Only relevant locations */}
+      {/* Only relevant locations — gurudwara + essentia, no reception venue */}
       <LocationButtons
-        include={["gurudwara", "essentia", "reception"]}
-        title="Wedding venues"
+        include={["gurudwara", "essentia"]}
+        title="Event venues"
       />
+
+      {/* Link to reception */}
+      <section className="bg-background px-6 py-6 sm:px-8">
+        <div className="mx-auto max-w-[560px]">
+          <Reveal>
+            <Link
+              to="/comal-sarabjot/13"
+              className="press card-soft group flex min-h-[88px] items-center justify-between bg-primary px-6 py-5 text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:min-h-[96px] sm:px-8"
+              aria-label="View Reception — 13th December"
+            >
+              <div className="text-left">
+                <p className="font-display text-[1.35rem] leading-none tracking-wide sm:text-[1.5rem]">
+                  Reception
+                </p>
+                <p className="mt-1.5 text-[0.62rem] uppercase tracking-[0.16em] text-primary-foreground/80">
+                  13 December · 9:00 PM
+                </p>
+              </div>
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-primary-foreground/30 bg-white/10 text-primary-foreground sm:h-11 sm:w-11">
+                <span aria-hidden="true" className="text-[1.1rem] leading-none">
+                  →
+                </span>
+              </span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
 
       <ShareButton />
       <InvitationFooter />

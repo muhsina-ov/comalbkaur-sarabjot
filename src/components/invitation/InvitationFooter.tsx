@@ -15,22 +15,7 @@ export function InvitationFooter() {
           {contact.closingLine1}
         </p>
         <p className="mt-3 font-display text-[1.35rem] leading-tight tracking-wide text-foreground sm:text-[1.5rem]">
-          Bhangu and Palakkel Family
-        </p>
-
-        <div className="mx-auto mt-7 h-px w-16 bg-primary/20" />
-
-        <p className="mt-7 text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground">
-          {contact.eventManagerLabel}
-        </p>
-        <a
-          href={contact.eventManagerHref}
-          className="mt-2 inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/25 bg-secondary/40 px-6 text-[0.84rem] font-medium tracking-wide text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-        >
-          {contact.eventManagerPhone}
-        </a>
-        <p className="mt-3 text-[0.58rem] text-muted-foreground/70">
-          Tap to call
+          {contact.closingFamily}
         </p>
       </div>
 

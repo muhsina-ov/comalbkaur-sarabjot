@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Join us in celebrating the wedding of Comal Kaur and Sarabjot Singh Lamba — Sangeet 11 Dec, Ring Ceremony 12 Dec, Wedding Day 13 Dec 2026.",
+          "Join us in celebrating the wedding of Comal Kaur and Sarabjot Singh Lamba — Sangeet 11 Dec, Engagement Ceremony 12 Dec, Wedding Day 13 Dec 2026.",
       },
       { property: "og:title", content: "Comal Kaur Weds Sarabjot Singh Lamba" },
       {
