@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { OpeningBlessing } from "@/components/invitation/OpeningBlessing";
 import { Monogram } from "@/components/invitation/Monogram";
 import { CoupleHeader } from "@/components/invitation/CoupleHeader";
+import { CoupleGallery } from "@/components/invitation/CoupleGallery";
 import { EventTimeline } from "@/components/invitation/EventTimeline";
 import { NavCards } from "@/components/invitation/NavCards";
 import { LocationButtons } from "@/components/invitation/LocationButtons";
@@ -44,6 +45,9 @@ function MainInvitation() {
 
       {/* 3-5 — Grandparents wording + Couple + Parents */}
       <CoupleHeader />
+
+      {/* Couple moments — from assets, where suitable */}
+      <CoupleGallery variant="main" />
 
       {/* 6 — Countdown — elegant minimal to 13 Dec 2026 */}
       <section className="bg-background px-6 py-8 sm:px-8 sm:py-10">

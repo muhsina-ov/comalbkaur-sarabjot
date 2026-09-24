@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { OpeningBlessing } from "@/components/invitation/OpeningBlessing";
 import { Monogram } from "@/components/invitation/Monogram";
+import { CoupleGallery } from "@/components/invitation/CoupleGallery";
 import { EventTimeline, allEvents } from "@/components/invitation/EventTimeline";
 import { LocationButtons } from "@/components/invitation/LocationButtons";
 import { ShareButton } from "@/components/invitation/ShareButton";
@@ -62,6 +63,8 @@ function Page12_13() {
           </p>
         </Reveal>
       </section>
+
+      <CoupleGallery variant="compact" />
 
       {/* Filtered timeline — 12th + 13th only */}
       <EventTimeline

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { OpeningBlessing } from "@/components/invitation/OpeningBlessing";
 import { Monogram } from "@/components/invitation/Monogram";
+import { CoupleGallery } from "@/components/invitation/CoupleGallery";
 import { EventTimeline, allEvents } from "@/components/invitation/EventTimeline";
 import { LocationButtons } from "@/components/invitation/LocationButtons";
 import { ShareButton } from "@/components/invitation/ShareButton";
@@ -56,6 +57,8 @@ function Page13() {
           <div className="mx-auto mt-5 h-px w-16 bg-primary/20" />
         </Reveal>
       </section>
+
+      <CoupleGallery variant="compact" />
 
       <EventTimeline filter={filter} overline="Wedding Day" title="13 December 2026" />
 
