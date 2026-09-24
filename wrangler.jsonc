@@ -1,19 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "comal-sarabjot-invitation",
-  "type": "module",
-  // Nitro cloudflare-module writes worker to .output/server/index.mjs
-  "main": ".output/server/index.mjs",
+  "name": "comalbkaur-sarabjot",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "directory": ".output/public",
-    "not_found_handling": "single-page-application"
-  },
-  // Respect Nitro routeRules headers; add fallback header rules via _headers if needed
-  "routes": [
-    { "pattern": "comal-sarabjot.invitestory.in/*", "zone_name": "invitestory.in" }
-  ],
   "observability": {
     "enabled": true
   }
