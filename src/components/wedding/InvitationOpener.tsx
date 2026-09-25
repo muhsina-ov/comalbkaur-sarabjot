@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { couple } from "@/lib/wedding";
+
 const poster = "https://media.invitestory.in/seashell-vows/src/assets/opener-frames/lantern-reveal-first.png";
 
-const SESSION_KEY = "everlasting-vows-opened";
+const SESSION_KEY = "seashell-vows-opened";
 
 export function InvitationOpener() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -24,6 +26,7 @@ export function InvitationOpener() {
   async function openInvitation() {
     if (!videoRef.current || started) return;
     setStarted(true);
+    window.dispatchEvent(new CustomEvent("play-wedding-music"));
     try {
       await videoRef.current.play();
     } catch {
@@ -46,7 +49,7 @@ export function InvitationOpener() {
     <div
       className={`invitation-opener fixed inset-0 z-[100] bg-background ${closing ? "is-closing" : ""}`}
       role="dialog"
-      aria-label="Open Aarav and Ananya's wedding invitation"
+      aria-label={`Open ${couple.bride} and ${couple.groom}'s wedding invitation`}
     >
       <video
         ref={videoRef}
@@ -64,7 +67,9 @@ export function InvitationOpener() {
           onClick={openInvitation}
           className="absolute inset-0 flex w-full flex-col items-center justify-end bg-[linear-gradient(180deg,transparent_42%,rgba(25,29,38,0.58)_100%)] px-6 pb-14 text-center text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/80"
         >
-          <span className="script text-xl text-[#f4d8a1]">Aarav & Ananya</span>
+          <span className="script text-xl text-[#f4d8a1]">
+            {couple.bride.split(" ")[0]} &amp; {couple.groom.split(" ")[0]}
+          </span>
           <span className="mt-3 border-b border-white/60 pb-1 text-[0.68rem] uppercase tracking-[0.24em]">
             Tap to open
           </span>

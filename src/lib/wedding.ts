@@ -38,14 +38,14 @@ export const events: WeddingEvent[] = [
     name: "SANGEET",
     dateLabel: "11 DECEMBER 2026",
     time: "8:30 PM onwards",
-    venue: "Essentia",
+    venue: "Essentia Luxury Hotel & Convention, Nagpur",
   },
   {
     id: "engagement",
     name: "ENGAGEMENT CEREMONY",
     dateLabel: "12 DECEMBER 2026",
     time: "8:30 PM onwards",
-    venue: "Essentia",
+    venue: "Essentia Luxury Hotel & Convention, Nagpur",
   },
   {
     id: "anand-karaj",
@@ -60,7 +60,7 @@ export const events: WeddingEvent[] = [
     name: "LUNCH",
     dateLabel: "13 DECEMBER 2026",
     time: "1:30 PM",
-    venue: "Essentia",
+    venue: "Essentia Luxury Hotel & Convention, Nagpur",
   },
   {
     id: "reception",
@@ -84,7 +84,7 @@ export type LocationKey = keyof typeof locations;
 
 export const locationLabels: Record<LocationKey, string> = {
   gurudwara: "Gurudwara Guru Nanak Darbar",
-  essentia: "Essentia",
+  essentia: "Essentia Luxury Hotel & Convention, Nagpur",
   reception: "Lamba Celebrations — Reception",
 };
 

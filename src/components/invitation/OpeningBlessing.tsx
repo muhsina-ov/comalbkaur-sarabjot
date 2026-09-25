@@ -27,10 +27,10 @@ export function OpeningBlessing() {
       {/* Gurbani lines rendered as text, NOT as image */}
       <div className="mt-6 max-w-[22rem] text-center">
         <p className="font-display text-[0.82rem] leading-[2] tracking-[0.08em] text-foreground/85 sm:text-[0.88rem]">
-          ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ
+          ਧਰ ਜੀਅਰੇ ਇਕ ਟੇਕ ਤੂ ਲਾਹਿ ਬਿਡਾਨੀ ਆਸ
         </p>
         <p className="mt-1 font-display text-[0.82rem] leading-[2] tracking-[0.08em] text-foreground/85 sm:text-[0.88rem]">
-          ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ
+          ਨਾਨਕ ਨਾਮੁ ਧਿਆਈਐ ਕਾਰਜੁ ਆਵੈ ਰਾਸਿ
         </p>
       </div>
 

@@ -17,8 +17,8 @@ const all: LocationItem[] = [
   },
   {
     key: "essentia",
-    label: "Essentia",
-    sub: "Lunch — 1:30 PM",
+    label: "Essentia Luxury Hotel & Convention, Nagpur",
+    sub: "Events Venue",
     href: locations.essentia,
   },
   {

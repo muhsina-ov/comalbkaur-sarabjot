@@ -77,15 +77,12 @@ export function CoupleGallery({
 
   // Main — featured image + 2-column grid for other two
   return (
-    <section className="bg-background px-6 py-8 sm:px-8 sm:py-10" aria-label="Comal and Sarabjot — moments">
+    <section className="bg-background px-6 py-8 sm:px-8 sm:py-10" aria-label="Comal and Sarabjot — gallery">
       <Reveal>
         <div className="mx-auto max-w-[560px] text-center">
           <p className="text-[0.62rem] uppercase tracking-airy text-muted-foreground">
             Comal &amp; Sarabjot
           </p>
-          <h2 className="mt-3 font-display text-[1.85rem] leading-tight text-foreground sm:text-[2.05rem]">
-            Our moments
-          </h2>
           <div className="mx-auto mt-4 flex items-center justify-center gap-3 text-primary/40">
             <span className="h-px w-10 bg-gradient-to-r from-transparent to-primary/25 sm:w-16" />
             <span className="font-display text-[0.72rem] italic tracking-wide text-primary/60">—</span>

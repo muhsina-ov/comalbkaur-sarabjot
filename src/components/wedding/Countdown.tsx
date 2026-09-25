@@ -2,12 +2,17 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 function useCountdown(iso: string) {
   const target = useMemo(() => new Date(iso).getTime(), [iso]);
-  const [now, setNow] = useState(() => Date.now());
+  const [mounted, setMounted] = useState(false);
+  const [now, setNow] = useState(() => (typeof window !== "undefined" ? Date.now() : target));
+
   useEffect(() => {
+    setMounted(true);
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const diff = Math.max(0, target - now);
+
+  const diff = mounted ? Math.max(0, target - now) : Math.max(0, target - new Date("2026-09-25T00:00:00Z").getTime());
   return {
     days: Math.floor(diff / 86400000),
     hours: Math.floor((diff / 3600000) % 24),
@@ -36,6 +41,7 @@ function FlipCell({ value, label }: { value: number; label: string }) {
       >
         <span
           key={flipKey}
+          suppressHydrationWarning
           className="block origin-top text-center font-display text-[1.9rem] leading-none text-foreground"
           style={{ animation: "flip-in 520ms cubic-bezier(.22,1,.36,1)" }}
         >

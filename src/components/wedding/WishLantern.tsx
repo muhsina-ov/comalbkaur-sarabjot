@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { couple } from "@/lib/wedding";
 const lantern = "https://media.invitestory.in/seashell-vows/src/assets/watercolor-lantern.png";
 const lanterns = "https://media.invitestory.in/seashell-vows/src/assets/lantern-constellation.png";
 
@@ -38,7 +39,7 @@ export function WishLantern() {
       };
     });
     setReleased((current) => [...current.slice(-44), ...batch]);
-    setMessage("The sky is glowing for Aarav and Ananya.");
+    setMessage(`The sky is glowing for ${couple.bride.split(" ")[0]} and ${couple.groom.split(" ")[0]}.`);
     window.setTimeout(() => {
       const batchIds = new Set(batch.map((entry) => entry.id));
       setReleased((current) => current.filter((entry) => !batchIds.has(entry.id)));

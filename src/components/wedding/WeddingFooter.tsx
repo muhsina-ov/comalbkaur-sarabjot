@@ -63,17 +63,17 @@ export function WeddingFooter() {
         />
         <p className="mt-4 script text-lg text-primary">We cannot wait to celebrate with you</p>
         <h2 className="mt-4 font-display text-[2.65rem] leading-[1.05]">
-          {couple.groom} <span className="script text-2xl text-primary">&</span> {couple.bride}
+          {couple.bride} <span className="script text-2xl text-primary">&</span> {couple.groom}
         </h2>
 
         <div className="mt-7 grid w-full max-w-sm grid-cols-2 border-y border-primary/25 py-4 text-left">
           <div className="border-r border-primary/25 pr-5">
             <p className="text-xs text-muted-foreground">The wedding</p>
-            <p className="mt-1 font-display text-lg">14 February 2026</p>
+            <p className="mt-1 font-display text-lg">{couple.dateLabel}</p>
           </div>
           <div className="pl-5">
             <p className="text-xs text-muted-foreground">The place</p>
-            <p className="mt-1 font-display text-lg">Cavelossim, Goa</p>
+            <p className="mt-1 font-display text-lg">Nagpur, India</p>
           </div>
         </div>
 
@@ -89,7 +89,7 @@ export function WeddingFooter() {
         </p>
 
         <p className="mt-8 text-xs leading-relaxed text-foreground/70">
-          With love, from our families to yours
+          With love, from Bhangu and Palakkel Family
         </p>
 
         <a
